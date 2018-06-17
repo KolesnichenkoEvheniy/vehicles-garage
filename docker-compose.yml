@@ -9,3 +9,8 @@ services:
       - 8080:80
     volumes:
       - .:/srv/app
+  composer:
+    image: herloct/composer:1.4.2-php7.1
+    command: install
+    volumes:
+      - .:/project

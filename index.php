@@ -14,6 +14,7 @@ $gasStation->setAvailableFuels([
     new Kerosene(300),
 ]);
 
+echo "<pre>";
 
 $garage = new \App\Garage($gasStation);
 
@@ -25,3 +26,5 @@ $garage->loadCar(new \App\Vehicles\ground\Bus(30, 1000));
 $garage->refuelVehicles();
 
 $garage->useVehicles();
+
+echo "</pre>";

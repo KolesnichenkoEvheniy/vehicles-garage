@@ -45,18 +45,20 @@ class Garage
     }
 
     /**
-     * @throws \Exception
+
      */
     public function refuelVehicles()
     {
         foreach ($this->vehicles as $vehicle) {
             /** @var Vehicle $vehicle */
             echo " --- Refuel " . get_class($vehicle) . "\n";
-            $fuelFromStation = $this->gasStation->refuel($vehicle);
-
-            $vehicle->addFuel($fuelFromStation);
-
-            echo " --- Now " . get_class($vehicle) . " has {$vehicle->getFuelAmount()}\n";
+            try {
+                $fuelFromStation = $this->gasStation->refuel($vehicle);
+                $vehicle->addFuel($fuelFromStation);
+                echo " --- Now " . get_class($vehicle) . " has {$vehicle->getFuelAmount()}\n";
+            } catch (\Exception $e) {
+                // TODO: log
+            }
         }
     }
 
