@@ -31,6 +31,14 @@ class Garage
         return $this->gasStation;
     }
 
+    /**
+     * @return array
+     */
+    public function getVehicles(): array
+    {
+        return $this->vehicles;
+    }
+
     public function loadCar(Vehicle $vehicle)
     {
         $this->vehicles[] = $vehicle;
