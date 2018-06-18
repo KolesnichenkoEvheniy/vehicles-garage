@@ -16,9 +16,9 @@ class Garage
 
     /**
      * Garage constructor.
-     * @param \App\GasStation\GasStation $gasStation
+     * @param \App\GasStation\GasStationInterface $gasStation
      */
-    public function __construct(\App\GasStation\GasStation $gasStation)
+    public function __construct(\App\GasStation\GasStationInterface $gasStation)
     {
         $this->gasStation = $gasStation;
     }
@@ -26,7 +26,7 @@ class Garage
     /**
      * @return \App\GasStation\GasStation
      */
-    public function getGasStation(): \App\GasStation\GasStation
+    public function getGasStation(): \App\GasStation\GasStationInterface
     {
         return $this->gasStation;
     }
@@ -49,7 +49,7 @@ class Garage
      */
     public function refuelVehicles()
     {
-        foreach ($this->vehicles as $vehicle) {
+        foreach ($this->getVehicles() as $vehicle) {
             /** @var Vehicle $vehicle */
             echo " --- Refuel " . get_class($vehicle) . "\n";
             try {
@@ -64,7 +64,7 @@ class Garage
 
     public function useVehicles()
     {
-        foreach ($this->vehicles as $vehicle) {
+        foreach ($this->getVehicles() as $vehicle) {
             /** @var Vehicle $vehicle */
             echo "\n |--- Drive " . get_class($vehicle) . "\n";
             echo $vehicle->getDriver()->startMove();

@@ -2,14 +2,21 @@
 
 namespace App\Tests;
 
+use App\BasicTestCase;
+use App\Drivers\Driver;
+use App\Fuels\basis\Fuel;
+use App\GasStation\GasStation;
+use App\GasStation\GasStationInterface;
+use App\vehicles\Vehicle;
 use PHPUnit\Framework\TestCase;
 
-class GarageTest extends TestCase
+class GarageTest extends BasicTestCase
 {
+
     public function testGarageCanLoadACar()
     {
         $gasStation = new \App\GasStation\GasStation();
-        $garage = $garage = new \App\Garage($gasStation);
+        $garage = new \App\Garage($gasStation);
 
         $garage->loadCar(new \App\Vehicles\ground\Car(10, 1000));
         $garage->loadCar(new \App\vehicles\air\Plane(200, 1000));
@@ -20,8 +27,50 @@ class GarageTest extends TestCase
     public function testGarageCanConnectWithGasStation()
     {
         $gasStation = new \App\GasStation\GasStation();
-        $garage = $garage = new \App\Garage($gasStation);
+        $garage = new \App\Garage($gasStation);
 
         $this->assertEquals($gasStation, $garage->getGasStation());
+    }
+
+    public function testRefuelFunctionality()
+    {
+        $fakeGasStation = \Mockery::mock(GasStationInterface::class)
+            ->expects('refuel')
+            ->andReturn(10)
+            ->once()
+            ->getMock();
+
+        $fakeVehicle = \Mockery::mock(Vehicle::class)
+            ->expects('addFuel')
+            ->withArgs([10])
+            ->once()
+            ->getMock();
+
+        $garage = new \App\Garage($fakeGasStation);
+        $garage->loadCar($fakeVehicle);
+
+        $garage->refuelVehicles();
+    }
+
+    public function testOfVehiclesUsage()
+    {
+        $fakeGasStation = \Mockery::mock(GasStationInterface::class)->makePartial();
+
+        $fakeDriver = \Mockery::mock(Driver::class);
+        $fakeDriver->expects('startMove')->once();
+        $fakeDriver->expects('doSomething')->once();
+        $fakeDriver->expects('stopMove')->once();
+
+
+        $fakeVehicle = \Mockery::mock(Vehicle::class)
+            ->expects('getDriver')
+            ->andReturn($fakeDriver->makePartial())
+            ->times(3)
+            ->getMock();
+
+        $garage = new \App\Garage($fakeGasStation);
+        $garage->loadCar($fakeVehicle);
+
+        $garage->useVehicles();
     }
 }

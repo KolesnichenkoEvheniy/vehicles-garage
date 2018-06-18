@@ -4,7 +4,7 @@ namespace App\GasStation;
 
 use App\vehicles\Vehicle;
 
-class GasStation
+class GasStation implements GasStationInterface
 {
     /**
      * @var \App\Fuels\basis\Fuel[]
