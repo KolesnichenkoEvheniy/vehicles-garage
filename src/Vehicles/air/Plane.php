@@ -3,8 +3,8 @@
 namespace App\vehicles\air;
 
 
-use App\Drivers\AirVehicleDriver;
-use App\Drivers\Driver;
+use App\Drivers\AirVehicleDriverInterface;
+use App\Drivers\DriverInterface;
 use App\Fuels\Kerosene;
 use App\vehicles\Vehicle;
 
@@ -28,8 +28,8 @@ class Plane extends Vehicle
         return "plane lands on\n";
     }
 
-    public function getDriver(): Driver
+    public function getDriver(): DriverInterface
     {
-        return new AirVehicleDriver($this);
+        return new AirVehicleDriverInterface($this);
     }
 }

@@ -30,16 +30,24 @@ class GasStation implements GasStationInterface
     }
 
     /**
+     * @return \App\Fuels\basis\Fuel[]
+     */
+    public function getAvailableFuels(): array
+    {
+        return $this->availableFuels;
+    }
+
+    /**
      * @param \App\vehicles\Vehicle $vehicle
      * @return int
      * @throws \Exception
      */
     public function refuel(Vehicle $vehicle) : int
     {
-        if (empty($this->availableFuels)) {
+        if (empty($this->getAvailableFuels())) {
             throw new \Exception("No fuels avaiable");
         }
 
-        return $this->availableFuels[0]->refuel($vehicle->getNeedFuelAmount(), $vehicle->getSuitableFuelTypes());
+        return current($this->getAvailableFuels())->refuel($vehicle->getNeedFuelAmount(), $vehicle->getSuitableFuelTypes());
     }
 }

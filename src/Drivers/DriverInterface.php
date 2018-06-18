@@ -4,7 +4,7 @@
 namespace App\Drivers;
 
 
-interface Driver
+interface DriverInterface
 {
     public function startMove();
     public function doSomething();

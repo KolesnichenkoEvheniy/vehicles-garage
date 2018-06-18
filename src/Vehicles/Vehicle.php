@@ -3,7 +3,7 @@
 namespace App\vehicles;
 
 
-use App\Drivers\Driver;
+use App\Drivers\DriverInterface;
 
 abstract class Vehicle
 {
@@ -15,7 +15,7 @@ abstract class Vehicle
     protected $needFuelAmount;
 
     /**
-     * @var \App\Drivers\Driver
+     * @var \App\Drivers\DriverInterface
      */
     protected $driver;
 
@@ -32,18 +32,22 @@ abstract class Vehicle
 
     /**
      * @param int $fuelAmount
+     * @return \App\vehicles\Vehicle
      */
-    public function setFuelAmount(int $fuelAmount): void
+    public function setFuelAmount(int $fuelAmount): \App\vehicles\Vehicle
     {
         $this->fuelAmount = $fuelAmount;
+        return $this;
     }
 
     /**
      * @param int $fuelAmount
+     * @return \App\vehicles\Vehicle
      */
-    public function addFuel(int $fuelAmount): void
+    public function addFuel(int $fuelAmount) : \App\vehicles\Vehicle
     {
         $this->fuelAmount += $fuelAmount;
+        return $this;
     }
 
     /**
@@ -63,5 +67,5 @@ abstract class Vehicle
     }
 
     abstract public function getSuitableFuelTypes() : array;
-    abstract public function getDriver() : Driver;
+    abstract public function getDriver() : DriverInterface;
 }

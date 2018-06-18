@@ -5,36 +5,33 @@ namespace App\Vehicles\ground;
 
 use App\Drivers\DriverInterface;
 use App\Drivers\GroundVehicleDriver;
+use App\Fuels\FakeFuel;
 use App\Fuels\Gas;
-use App\Fuels\Petrol;
 use App\vehicles\Vehicle;
 
-class Car extends Vehicle implements GroundVehicle
+class FakeVehicle extends Vehicle implements GroundVehicle
 {
     /**
      * @inheritdoc
      */
     public function getSuitableFuelTypes(): array
     {
-        return [
-            Petrol::class,
-            Gas::class,
-        ];
+        return [ FakeFuel::class ];
     }
 
     public function startDrive()
     {
-        return "Car start driving\n";
+        return "Fake vehicle starts moving";
     }
 
     public function stopDrive()
     {
-        return "Car stop driving\n";
+        return "Fake vehicle stops moving";
     }
 
     public function beeep()
     {
-        return "beep from car\n";
+        return "Fake vehicle make beep";
     }
 
     public function getDriver(): DriverInterface

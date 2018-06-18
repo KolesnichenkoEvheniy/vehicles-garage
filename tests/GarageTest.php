@@ -3,7 +3,7 @@
 namespace App\Tests;
 
 use App\BasicTestCase;
-use App\Drivers\Driver;
+use App\Drivers\DriverInterface;
 use App\Fuels\basis\Fuel;
 use App\GasStation\GasStation;
 use App\GasStation\GasStationInterface;
@@ -56,7 +56,7 @@ class GarageTest extends BasicTestCase
     {
         $fakeGasStation = \Mockery::mock(GasStationInterface::class)->makePartial();
 
-        $fakeDriver = \Mockery::mock(Driver::class);
+        $fakeDriver = \Mockery::mock(DriverInterface::class);
         $fakeDriver->expects('startMove')->once();
         $fakeDriver->expects('doSomething')->once();
         $fakeDriver->expects('stopMove')->once();

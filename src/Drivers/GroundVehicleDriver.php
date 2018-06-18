@@ -3,7 +3,7 @@
 namespace App\Drivers;
 
 
-class GroundVehicleDriver implements Driver
+class GroundVehicleDriver implements DriverInterface
 {
     /**
      * @var \App\Vehicles\ground\GroundVehicle

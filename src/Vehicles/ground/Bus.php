@@ -3,7 +3,7 @@
 namespace App\Vehicles\ground;
 
 
-use App\Drivers\Driver;
+use App\Drivers\DriverInterface;
 use App\Drivers\GroundVehicleDriver;
 use App\Fuels\Gas;
 use App\vehicles\Vehicle;
@@ -33,7 +33,7 @@ class Bus extends Vehicle implements GroundVehicle
         return "loud beep from bus\n";
     }
 
-    public function getDriver(): Driver
+    public function getDriver(): DriverInterface
     {
         return new GroundVehicleDriver($this);
     }
