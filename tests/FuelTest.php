@@ -19,6 +19,9 @@ class FuelTest extends BasicTestCase
 
     public function testOfRefuelFunctionality()
     {
+        $this->expectOutputString("Now App\Fuels\FakeFuel has amount 50
+Refill 50 using App\Fuels\FakeFuel\n");
+
         $fakeFuel = new FakeFuel(100);
         $satiableFuelTypes = [ FakeFuel::class ];
 
@@ -30,6 +33,9 @@ class FuelTest extends BasicTestCase
 
     public function testOfRefuelWithSuccessor()
     {
+        $this->expectOutputString("Now App\Fuels\FakeFuel has amount 50\nRefill 50 using App\Fuels\FakeFuel\n[info] Cannot refill using App\Fuels\FakeFuel. Proceeding ..\nCannot refill using App\Fuels\FakeFuel. Proceeding ..
+");
+
         $fakeFuel = new FakeFuel(100);
         $satiableFuelTypes = [ FakeFuel::class ];
 

@@ -23,7 +23,7 @@ class GasStationTest extends BasicTestCase
         $this->assertEquals($fuelsToSet, $gasStation->getAvailableFuels());
     }
 
-    public function testGasStationCanNotRefuelWithoutFuelRefuel()
+    public function testGasStationCanNotRefuelWithoutFuel()
     {
         $this->expectException(\Exception::class);
 
@@ -36,8 +36,9 @@ class GasStationTest extends BasicTestCase
         $gasStation->refuel($fakeVehicle);
     }
 
-    public function testGasStationCanRefuelWithoutFuelRefuel()
+    public function testGasStationCanRefuelWithoutFuel()
     {
+        $this->expectOutputString("Now App\Fuels\FakeFuel has amount 50\nRefill 50 using App\Fuels\FakeFuel\n");
         $gasStation = new GasStation();
         $fuelsToSet = [new FakeFuel(100)];
         $gasStation->setAvailableFuels($fuelsToSet);
