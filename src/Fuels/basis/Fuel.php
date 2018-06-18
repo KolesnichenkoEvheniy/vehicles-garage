@@ -49,13 +49,21 @@ abstract class Fuel
             echo "Now " . get_called_class() . " has amount {$this->amount}\n";
             echo sprintf('Refill %s using %s' . PHP_EOL, $amountOfFuel, get_called_class());
             return $amountOfFuel;
-        } elseif ($this->successor) {
+        } elseif ($this->getSuccessor()) {
             echo sprintf('[info] Cannot refill using %s. Proceeding ..' . PHP_EOL, get_called_class());
-            return $this->successor->refuel($amountOfFuel, $satiableFuelTypes);
+            return $this->getSuccessor()->refuel($amountOfFuel, $satiableFuelTypes);
         } else {
             echo sprintf('Cannot refill using %s. Proceeding ..' . PHP_EOL, get_called_class());
             return 0;
         }
+    }
+
+    /**
+     * @return \App\Fuels\basis\Fuel
+     */
+    public function getSuccessor()
+    {
+        return $this->successor;
     }
 
     public function canRefuel($amountOfFuel, $satiableFuelTypes): bool
