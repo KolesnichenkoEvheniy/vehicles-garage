@@ -46,7 +46,7 @@ Refill 50 using App\Fuels\FakeFuel\n");
         );
 
         $fakeSecondFuel = \Mockery::mock(Fuel::class)
-            ->expects('refuel')
+            ->shouldReceive('refuel')
             ->andReturn(100)
             ->once()
             ->getMock();

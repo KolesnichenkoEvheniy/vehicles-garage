@@ -36,13 +36,13 @@ class GarageTest extends BasicTestCase
     {
         $this->expectOutputString(" --- Refuel Mockery_0_App_vehicles_Vehicle\n");
         $fakeGasStation = \Mockery::mock(GasStationInterface::class)
-            ->expects('refuel')
+            ->shouldReceive('refuel')
             ->andReturn(10)
             ->once()
             ->getMock();
 
         $fakeVehicle = \Mockery::mock(Vehicle::class)
-            ->expects('addFuel')
+            ->shouldReceive('addFuel')
             ->withArgs([10])
             ->once()
             ->getMock();
@@ -59,13 +59,13 @@ class GarageTest extends BasicTestCase
         $fakeGasStation = \Mockery::mock(GasStationInterface::class)->makePartial();
 
         $fakeDriver = \Mockery::mock(DriverInterface::class);
-        $fakeDriver->expects('startMove')->once();
-        $fakeDriver->expects('doSomething')->once();
-        $fakeDriver->expects('stopMove')->once();
+        $fakeDriver->shouldReceive('startMove')->once();
+        $fakeDriver->shouldReceive('doSomething')->once();
+        $fakeDriver->shouldReceive('stopMove')->once();
 
 
         $fakeVehicle = \Mockery::mock(Vehicle::class)
-            ->expects('getDriver')
+            ->shouldReceive('getDriver')
             ->andReturn($fakeDriver->makePartial())
             ->times(3)
             ->getMock();
