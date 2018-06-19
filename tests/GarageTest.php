@@ -18,8 +18,8 @@ class GarageTest extends BasicTestCase
         $gasStation = new \App\GasStation\GasStation();
         $garage = new \App\Garage($gasStation);
 
-        $garage->loadCar(new \App\Vehicles\ground\Car(10, 1000));
-        $garage->loadCar(new \App\vehicles\air\Plane(200, 1000));
+        $garage->loadCar(new \App\Vehicles\ground\Car(10));
+        $garage->loadCar(new \App\vehicles\air\Plane(200));
 
         $this->assertCount(2, $garage->getVehicles());
     }
