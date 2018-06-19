@@ -3,12 +3,12 @@
 namespace App\vehicles\air;
 
 
-use App\Drivers\AirVehicleDriverInterface;
+use App\Drivers\AirVehicleDriver;
 use App\Drivers\DriverInterface;
 use App\Fuels\Kerosene;
 use App\vehicles\Vehicle;
 
-class Plane extends Vehicle
+class Plane extends Vehicle implements AirVehicle
 {
     /**
      * @inheritdoc
@@ -26,10 +26,5 @@ class Plane extends Vehicle
     public function landOn()
     {
         return "plane lands on\n";
-    }
-
-    public function getDriver(): DriverInterface
-    {
-        return new AirVehicleDriverInterface($this);
     }
 }

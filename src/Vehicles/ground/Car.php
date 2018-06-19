@@ -36,9 +36,4 @@ class Car extends Vehicle implements GroundVehicle
     {
         return "beep from car\n";
     }
-
-    public function getDriver(): DriverInterface
-    {
-        return new GroundVehicleDriver($this);
-    }
 }

@@ -32,9 +32,4 @@ class Bus extends Vehicle implements GroundVehicle
     {
         return "loud beep from bus\n";
     }
-
-    public function getDriver(): DriverInterface
-    {
-        return new GroundVehicleDriver($this);
-    }
 }

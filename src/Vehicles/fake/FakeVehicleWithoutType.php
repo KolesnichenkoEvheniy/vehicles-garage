@@ -9,7 +9,7 @@ use App\Fuels\FakeFuel;
 use App\Fuels\Gas;
 use App\vehicles\Vehicle;
 
-class FakeVehicle extends Vehicle implements GroundVehicle
+class FakeVehicleWithoutType extends Vehicle
 {
     /**
      * @inheritdoc

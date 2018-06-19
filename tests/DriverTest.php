@@ -3,7 +3,7 @@
 namespace App;
 
 
-use App\Drivers\AirVehicleDriverInterface;
+use App\Drivers\AirVehicleDriver;
 use App\Drivers\GroundVehicleDriver;
 use App\Vehicles\ground\FakeVehicle;
 use App\vehicles\Vehicle;
@@ -30,7 +30,7 @@ class DriverTest extends BasicTestCase
         $fakeVehicle->shouldNotReceive('beeep');
         $fakeVehicle->shouldReceive('landOn')->once();
 
-        $groundDriver = new AirVehicleDriverInterface($fakeVehicle);
+        $groundDriver = new AirVehicleDriver($fakeVehicle);
         $groundDriver->startMove();
         $groundDriver->doSomething();
         $groundDriver->stopMove();

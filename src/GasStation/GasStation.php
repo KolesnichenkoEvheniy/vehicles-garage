@@ -48,6 +48,10 @@ class GasStation implements GasStationInterface
             throw new \Exception("No fuels avaiable");
         }
 
-        return current($this->getAvailableFuels())->refuel($vehicle->getNeedFuelAmount(), $vehicle->getSuitableFuelTypes());
+        return current($this->getAvailableFuels())
+            ->refuel(
+                $vehicle->getNeedFuelAmount(),
+                $vehicle->getSuitableFuelTypes()
+            );
     }
 }

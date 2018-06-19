@@ -3,7 +3,7 @@
 namespace App\Drivers;
 
 
-class AirVehicleDriverInterface implements DriverInterface
+class AirVehicleDriver implements DriverInterface
 {
     /**
      * @var \App\Vehicles\air\AirVehicle

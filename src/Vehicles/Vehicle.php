@@ -4,6 +4,8 @@ namespace App\vehicles;
 
 
 use App\Drivers\DriverInterface;
+use App\Drivers\DriversFactory;
+use App\Exceptions\DriverNotFound;
 
 abstract class Vehicle
 {
@@ -66,6 +68,20 @@ abstract class Vehicle
         return $this->needFuelAmount;
     }
 
+    /**
+     * @return \App\Drivers\DriverInterface
+     * @throws \App\Exceptions\DriverNotFound
+     */
+    public function getDriver()
+    {
+        $driver = DriversFactory::getDriverFor($this);
+
+        if (is_null($driver)) {
+            throw new DriverNotFound();
+        }
+
+        return $driver;
+    }
+
     abstract public function getSuitableFuelTypes() : array;
-    abstract public function getDriver() : DriverInterface;
 }
