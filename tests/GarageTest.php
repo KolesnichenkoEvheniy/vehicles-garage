@@ -34,7 +34,7 @@ class GarageTest extends BasicTestCase
 
     public function testRefuelFunctionality()
     {
-        $this->expectOutputString(" --- Refuel Mockery_0_App_vehicles_Vehicle\n");
+        $this->expectOutputRegex('~--- Refuel Mockery~');
         $fakeGasStation = \Mockery::mock(GasStationInterface::class)
             ->shouldReceive('refuel')
             ->andReturn(10)
@@ -55,7 +55,7 @@ class GarageTest extends BasicTestCase
 
     public function testOfVehiclesUsage()
     {
-        $this->expectOutputString("\n |--- Drive Mockery_0_App_vehicles_Vehicle\n");
+        $this->expectOutputRegex("~ |--- Drive Mockery_0_App_vehicles_Vehicle~");
         $fakeGasStation = \Mockery::mock(GasStationInterface::class)->makePartial();
 
         $fakeDriver = \Mockery::mock(DriverInterface::class);
