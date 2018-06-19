@@ -4,12 +4,11 @@ namespace App\Fuels;
 
 use App\Fuels\basis\Fuel;
 
-
 /**
- * Class FakeFuel
+ * Class HorseFood
  * @package App\Fuels
  */
-class FakeFuel extends Fuel
+class HorseFood extends Fuel
 {
 
 }
