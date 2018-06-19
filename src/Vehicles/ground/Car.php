@@ -3,14 +3,19 @@
 namespace App\Vehicles\ground;
 
 
-use App\Drivers\DriverInterface;
-use App\Drivers\GroundVehicleDriver;
+use App\Behaviours\ground\CarBehaviour;
 use App\Fuels\Gas;
 use App\Fuels\Petrol;
 use App\vehicles\Vehicle;
 
 class Car extends Vehicle implements GroundVehicle
 {
+    public function __construct($fuelAmount)
+    {
+        parent::__construct($fuelAmount);
+        $this->behaviour = new CarBehaviour();
+    }
+
     /**
      * @inheritdoc
      */
@@ -20,20 +25,5 @@ class Car extends Vehicle implements GroundVehicle
             Petrol::class,
             Gas::class,
         ];
-    }
-
-    public function startDrive()
-    {
-        return "Car start driving\n";
-    }
-
-    public function stopDrive()
-    {
-        return "Car stop driving\n";
-    }
-
-    public function beeep()
-    {
-        return "beep from car\n";
     }
 }

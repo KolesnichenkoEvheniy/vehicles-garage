@@ -14,7 +14,7 @@ abstract class Vehicle
      */
     protected $fuelAmount = 0;
 
-    protected $needFuelAmount;
+    protected $needFuelAmount = 10;
 
     /**
      * @var \App\Drivers\DriverInterface
@@ -22,14 +22,13 @@ abstract class Vehicle
     protected $driver;
 
     /**
-     * @var integer
+     * @var \App\Behaviours\BehaviourInterface
      */
-    protected $maxSpeed;
+    protected $behaviour;
 
-    public function __construct($fuelAmount, $maxSpeed)
+    public function __construct($fuelAmount)
     {
         $this->needFuelAmount = $fuelAmount;
-        $this->maxSpeed = $maxSpeed;
     }
 
     /**
@@ -66,6 +65,14 @@ abstract class Vehicle
     public function getNeedFuelAmount()
     {
         return $this->needFuelAmount;
+    }
+
+    /**
+     * @return \App\Behaviours\BehaviourInterface
+     */
+    public function getBehaviour(): \App\Behaviours\BehaviourInterface
+    {
+        return $this->behaviour;
     }
 
     /**

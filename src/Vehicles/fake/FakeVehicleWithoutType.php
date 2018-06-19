@@ -3,34 +3,23 @@
 namespace App\Vehicles\ground;
 
 
-use App\Drivers\DriverInterface;
-use App\Drivers\GroundVehicleDriver;
+use App\Behaviours\ground\CarBehaviour;
 use App\Fuels\FakeFuel;
-use App\Fuels\Gas;
 use App\vehicles\Vehicle;
 
 class FakeVehicleWithoutType extends Vehicle
 {
+    public function __construct($fuelAmount)
+    {
+        parent::__construct($fuelAmount);
+        $this->behaviour = new CarBehaviour();
+    }
+
     /**
      * @inheritdoc
      */
     public function getSuitableFuelTypes(): array
     {
         return [ FakeFuel::class ];
-    }
-
-    public function startDrive()
-    {
-        return "Fake vehicle starts moving";
-    }
-
-    public function stopDrive()
-    {
-        return "Fake vehicle stops moving";
-    }
-
-    public function beeep()
-    {
-        return "Fake vehicle make beep";
     }
 }
